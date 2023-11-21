@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Spotify Log In</title>
+		<link rel="stylesheet" href="style.css" type="text/css" />
+		<link rel="icon" href="slike/spotifyfavi.png">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		
+	</head>
+	<body>
+		<div class="glava">
+			
+		</div>
+		
+		<div class="glavni">
+			<div class="center">
+				<img src="slike/spotifybanner.png">
+			</div>			
+			
+				<div class="login">
+					<form method="POST">						
+						Username<br/>
+						
+						<input type="text" placeholder="Username..."  id="user" required><br/>
+						<br/>
+						
+						Password<br/>
+						<input type="password" placeholder="Password..."  id="pass" required>						
+						<br/>
+						<br/>
+						
+						<label class="container">
+							<input type="checkbox">
+							Remember me
+							<span class="checkmark"></span>
+						  </label>
+						  <br/>
+						  <br/>
+						<input type="submit" value="Log In" id="button"><br/>
+						<br/>
+						<br/>
+						<br/>
+						<div class="forgot">
+							<span id="forgotten">Forgot password?</span>
+						</div>
+												
+					</form>
+					<div class="down">
+						<div class="signup">
+							Don't have an account?
+							<span onclick="transitionToPage('register.html')" id="reg">Sign up.</span>
+							
+						</div>
+						<br/>
+						<br/>
+						<div class="tos">
+							This site is protected by the <a href="https://policies.google.com/privacy" target="_blank" id="privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" id="terms">Terms of Service</a> apply.
+						</div>
+					</div>
+				</div>
+				
+					
+		</div>
+		<div id="overlayHEIA" class="hidden">
+			<div class="form">
+				<div class="mail">
+					Enter E-mail to reset password
+				</div>
+				<br>
+				<br>
+				<input type="email" placeholder="Email..."  class="recover" id="alertmail" required>
+				<form action="">					
+					<button class="overlaySubmit" id="button">Submit</button><br>
+					<br>
+					<button class="overlayCancel">Close</button>
+				</form>
+			</div>
+		</div>
+		<div class="noga">
+		
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		function cFunction(valu) {
+ 			 Swal.fire({
+			title: '<span style="color: white; font-family: spotify;">Welcome, '+valu+'</span>',
+			icon: 'success',
+			confirmButtonText: 'OK',
+			confirmButtonColor: 'rgb(32,180,108)',
+			iconColor: 'green',
+			background: '#1d1d1d',
+			heightAuto: false
+  		});
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+  		document.getElementById("button").addEventListener("click", login);
+		document.getElementById("forgotten").addEventListener("click", function(){
+			const overlay = document.getElementById('overlayHEIA');
+    		overlay.style.display = 'flex';
+			console.log("ok");
+		});
+		});
+		function login(event){
+			event.preventDefault();
+			const pass = document.getElementById("pass").value;
+			const valu = document.getElementById("user").value;
+			if(pass==="" || valu===""){
+				Swal.fire({
+				title: '<span style="color: white; font-family: spotify;">Fields cannot be empty</span>',
+				icon: 'error',
+				confirmButtonText: 'OK',
+				confirmButtonColor: 'rgb(32,180,108)',
+				iconColor: 'red',
+				background: '#1d1d1d',
+				heightAuto: false
+
+  		});
+		  event.preventDefault();
+		  		document.getElementById("pass").value = "";
+        		document.getElementById("user").value = "";
+			}
+			else{
+				cFunction(valu);
+				document.getElementById("pass").value = "";
+        		document.getElementById("user").value = "";
+			}
+			 		
+		}
+		
+	</script>
+	<script>
+		
+		function showSweetAlert() {
+		  const email = document.getElementById('alertmail').value;
+		  if(email===""){
+			Swal.fire({
+				title: '<span style="color: white; font-family: spotify;">Fields cannot be empty</span>',
+				icon: 'error',
+				confirmButtonText: 'OK',
+				confirmButtonColor: 'rgb(32,180,108)',
+				iconColor: 'red',
+				background: '#1d1d1d',
+				heightAuto: false
+
+  		});
+		  }
+		  else{
+			Swal.fire({
+				title: '<span style="color: white; font-family: spotify;">Password reset has been sent to your E-mail</span>',
+				icon: 'success',
+				confirmButtonText: 'OK',
+				confirmButtonColor: 'rgb(32,180,108)',
+				iconColor: 'green',
+				background: '#1d1d1d',
+				heightAuto: false
+
+  		});
+		  }
+		  
+		  
+		  
+		}
+		
+		
+	  
+		
+		document.addEventListener("DOMContentLoaded", function() {
+		  const overlaySubmitButton = document.querySelector('.overlaySubmit');
+		  overlaySubmitButton.addEventListener('click', function(event) {
+			event.preventDefault();
+			showSweetAlert();
+		  });
+		});
+	  </script>
+	<script type="text/javascript" src="transitions.js"></script>
+</html>
